@@ -12,8 +12,8 @@ This project demonstrates how to manage Docker infrastructure using Terraform.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/take-home-<id>.git
-cd take-home-<id>
+git clone https://github.com/FuJiK/terraform-docker-handson.git
+cd terraform-docker-handson
 ```
 
 2. Initialize Terraform:
@@ -53,12 +53,22 @@ docker exec web_server ping -c 1 cache_server
 terraform destroy
 ```
 
+## Tests
+
+```bash
+./scripts/run-tests.sh
+```
+
+Runs Terraform tests, configuration checks, HTTP verification, and container communication checks. Results are written to `test-results/report.txt`.
+
 ## File Structure
 
 - `providers.tf` - Provider configuration
 - `variables.tf` - Variable definitions
 - `main.tf` - Main resource definitions
 - `outputs.tf` - Output definitions
+- `tests/` - Terraform test definitions
+- `scripts/run-tests.sh` - Verification script
 
 ## Resources Created
 
