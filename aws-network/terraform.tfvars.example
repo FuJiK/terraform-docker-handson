@@ -1,0 +1,7 @@
+aws_region           = "ap-northeast-1"
+project              = "aws-network-lab"
+environment          = "dev"
+vpc_cidr             = "10.40.0.0/16"
+availability_zones   = ["ap-northeast-1a", "ap-northeast-1c"]
+public_subnet_cidrs  = ["10.40.0.0/24", "10.40.1.0/24"]
+private_subnet_cidrs = ["10.40.10.0/24", "10.40.11.0/24"]
