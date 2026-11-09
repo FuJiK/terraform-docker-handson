@@ -32,3 +32,16 @@ output "private_route_table_ids" {
   description = "Private route table IDs by index."
   value       = { for k, v in aws_route_table.private : k => v.id }
 }
+
+output "web_public_ip" {
+  description = "WordPress public IP (lab only)."
+  value       = try(aws_instance.web[0].public_ip, null)
+}
+output "web_private_ip" {
+  description = "WordPress private IP (lab only)."
+  value       = try(aws_instance.web[0].private_ip, null)
+}
+output "db_private_ip" {
+  description = "MariaDB private IP (lab only)."
+  value       = try(aws_instance.db[0].private_ip, null)
+}

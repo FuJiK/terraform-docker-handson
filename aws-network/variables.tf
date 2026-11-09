@@ -59,3 +59,35 @@ variable "private_subnet_cidrs" {
     error_message = "Provide two valid private subnet IPv4 CIDRs."
   }
 }
+
+variable "enable_wordpress_lab" {
+  description = "Opt in to creating two billable EC2 servers."
+  type        = bool
+  default     = false
+}
+variable "ssh_key_name" {
+  description = "Existing EC2 key pair name; required when lab is enabled."
+  type        = string
+  default     = null
+}
+variable "admin_cidr" {
+  description = "Trusted IPv4 CIDR (/32) for SSH and initial HTTP access."
+  type        = string
+  default     = null
+  validation {
+    condition     = var.admin_cidr == null ? true : (can(cidrnetmask(var.admin_cidr)) && var.admin_cidr != "0.0.0.0/0")
+    error_message = "Use a valid restricted IPv4 CIDR; never 0.0.0.0/0."
+  }
+}
+variable "instance_type" {
+  type    = string
+  default = "t3.micro"
+}
+variable "root_volume_size_gib" {
+  type    = number
+  default = 12
+  validation {
+    condition     = var.root_volume_size_gib >= 8
+    error_message = "At least 8 GiB is required."
+  }
+}
